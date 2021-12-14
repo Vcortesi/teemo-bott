@@ -1,4 +1,3 @@
-
 import discord
 from requests.api import request
 import os
@@ -93,13 +92,13 @@ def randomScript():
     return script
 
 def requestSummonerData(summonerName):
-    URL = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+summonerName+"?api_key="+config.API
+    URL = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+summonerName+"?api_key="+os.environ.API
     response = requests.get(URL)
     return response.json()
 
 def requestRankedData(ID):
-    URL = "https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/"+ID+"?api_key="+config.API
+    URL = "https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/"+ID+"?api_key="+os.environ.API
     response = requests.get(URL)
     return response.json()
 
-client.run(client.env.TOKEN)
+client.run(os.environ.TOKEN)
