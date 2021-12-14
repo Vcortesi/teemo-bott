@@ -102,4 +102,4 @@ def requestRankedData(ID):
     response = requests.get(URL)
     return response.json()
 
-client.run('ODg5ODA1NDc4NTAxMTY3MTM0.YUml7Q.LaxVB0ftiPgk28UDg48IC4SeAyE')
+client.run(os.environ.get('TOKEN'))
