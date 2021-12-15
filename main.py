@@ -75,7 +75,7 @@ async def on_message(message):
         #driver=webdriver.Chrome(options=chrome_options,executable_path=path)
         driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
         driver.get('https://u.gg/lol/champions/'+champion+'/counter')
-        #driver.set_window_size(1920, 1080)
+        driver.set_window_size(1920, 1080)
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(3)
         driver.get_screenshot_as_file('screenshot.png')
