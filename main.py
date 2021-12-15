@@ -65,6 +65,23 @@ async def on_message(message):
         await message.channel.send(file=discord.File('screenshot.png'))
         os.remove('screenshot.png')
         driver.quit()
+    
+    if "!counter" in message.content:
+        await message.channel.send(randomScript())
+        champion = message.content[8:]
+        #chrome_options = Options()
+        #chrome_options.add_argument("--start-maximized")
+        #chrome_options.add_argument("--headless") 
+        #driver=webdriver.Chrome(options=chrome_options,executable_path=path)
+        driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+        driver.get('https://u.gg/lol/champions/'+champion+'/counter')
+        #driver.set_window_size(1920, 1080)
+        time.sleep(2)
+        driver.find_element_by_class_name('champion-profile-page')
+        driver.get_screenshot_as_file('screenshot.png')
+        await message.channel.send(file=discord.File('screenshot.png'))
+        os.remove('screenshot.png')
+        driver.quit()
         
     if "!data" in message.content:
         await message.channel.send(randomScript())
