@@ -60,6 +60,7 @@ async def on_message(message):
         driver.get('https://probuildstats.com/champion/'+champion)
         driver.set_window_size(1920, 1080)
         time.sleep(2)
+        driver.find_element_by_class_name('champion-page_top-bar')
         driver.get_screenshot_as_file('screenshot.png')
         await message.channel.send(file=discord.File('screenshot.png'))
         os.remove('screenshot.png')
