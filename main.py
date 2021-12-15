@@ -59,7 +59,7 @@ async def on_message(message):
         driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
         driver.get('https://blitz.gg/lol/champions/'+champion)
         driver.set_window_size(1920, 1080)
-        time.sleep(1)
+        time.sleep(2)
         driver.get_screenshot_as_file('screenshot.png')
         await message.channel.send(file=discord.File('screenshot.png'))
         os.remove('screenshot.png')
@@ -93,12 +93,12 @@ def randomScript():
     return script
 
 def requestSummonerData(summonerName):
-    URL = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+summonerName+"?api_key="+os.environ.API
+    URL = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+summonerName+"?api_key="+os.environ.get('API')
     response = requests.get(URL)
     return response.json()
 
 def requestRankedData(ID):
-    URL = "https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/"+ID+"?api_key="+os.environ.API
+    URL = "https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/"+ID+"?api_key="+os.environ.get('API')
     response = requests.get(URL)
     return response.json()
 
