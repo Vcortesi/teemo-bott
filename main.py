@@ -57,7 +57,7 @@ async def on_message(message):
         #chrome_options.add_argument("--headless") 
         #driver=webdriver.Chrome(options=chrome_options,executable_path=path)
         driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-        driver.get('https://probuildstats.com/champion/shaco'+champion)
+        driver.get('https://probuildstats.com/champion/'+champion)
         driver.set_window_size(1920, 1080)
         time.sleep(2)
         driver.get_screenshot_as_file('screenshot.png')
