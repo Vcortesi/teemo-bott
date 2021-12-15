@@ -58,7 +58,7 @@ async def on_message(message):
         #driver=webdriver.Chrome(options=chrome_options,executable_path=path)
         driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
         driver.get('https://probuildstats.com/champion/'+champion)
-        driver.set_window_size(1920, 1080)
+        #driver.set_window_size(1920, 1080)
         time.sleep(2)
         driver.find_element_by_class_name('champion-page_top-bar')
         driver.get_screenshot_as_file('screenshot.png')
