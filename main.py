@@ -77,7 +77,7 @@ async def on_message(message):
         driver.get('https://u.gg/lol/champions/'+champion+'/counter')
         #driver.set_window_size(1920, 1080)
         time.sleep(2)
-        driver.find_element_by_class_name('champion-profile-page')
+        driver.find_element_by_class_name('counters-list best-win-rate')
         driver.get_screenshot_as_file('screenshot.png')
         await message.channel.send(file=discord.File('screenshot.png'))
         os.remove('screenshot.png')
