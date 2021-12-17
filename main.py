@@ -41,16 +41,13 @@ async def aram(ctx, *args):
     async with ctx.typing():
         await ctx.send(randomScript())
         champion = args[0]
-        driver=webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"))
+        driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+        driver.get('https://app.mobalytics.gg/lol/champions/'+champion+'/aram-builds')
         driver.set_window_size(1920, 1080)
-        driver.get('https://u.gg/lol/champions/aram/'+champion+'/-aram')
-        #element0 = driver.find_element_by_class_name('champion-image').get_attribute("src")
-        #await ctx.send(element0)
-        time.sleep(10)
-        element1 = driver.find_element_by_class_name('content-section_content.recommended-build_runes')
-        element1.screenshot("screenshot.png")
+        time.sleep(1)
+        driver.get_screenshot_as_file('screenshot.png')
         await ctx.send(file=discord.File('screenshot.png'))
-        #os.remove('screenshot1.png')
+        os.remove('screenshot.png')
         driver.quit()
 
 @bot.command()
