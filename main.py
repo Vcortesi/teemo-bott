@@ -131,7 +131,6 @@ async def tft(ctx, args):
         sumName = args
         responseJSON = requestSummonerData(sumName)
         ID = responseJSON['id']
-        print(ID)
         responseJSON2 = requestTftData(ID)
 
         if(responseJSON2[0]['queueType']) == "RANKED_TFT":
