@@ -45,7 +45,7 @@ async def aram(ctx, *args):
         driver.get('https://app.mobalytics.gg/lol/champions/'+champion+'/aram-builds')
         element1 = driver.find_element_by_class_name('content-section_content.recommended-build_runes')
         driver.set_window_size(1920, 1080)
-        time.sleep(1)
+        time.sleep(10)
         element1.screenshot("screenshot.png")
         await ctx.send(file=discord.File('screenshot.png'))
         os.remove('screenshot.png')
