@@ -47,7 +47,7 @@ async def aram(ctx, *args):
         element0 = driver.find_element_by_class_name('champion-image').get_attribute("src")
         await ctx.send(element0)
         time.sleep(10)
-        element1 = driver.find_element_by_class_name('content-section.content-section_no-padding.recommended-build_items.media-query.media-query_DESKTOP_MEDIUM__DESKTOP_LARGE')
+        element1 = driver.find_element_by_class_name('content-section_content.recommended-build_runes')
         element1.screenshot("screenshot.png")
         await ctx.send(file=discord.File('screenshot.png'))
         #os.remove('screenshot1.png')
