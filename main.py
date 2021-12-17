@@ -15,6 +15,7 @@ chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--no-sandbox")
 
+
 script = " "
 bot = commands.Bot(command_prefix='!')
 
@@ -43,7 +44,7 @@ async def aram(ctx, *args):
         champion = args[0]
         driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
         driver.get('https://u.gg/lol/champions/aram/'+champion+'/-aram')
-        
+        driver.set_window_size(1920, 1080)
         element0 = driver.find_element_by_class_name('champion-image').get_attribute("src")
         element1 = driver.find_element_by_class_name('content-section_content.recommended-build_runes')
         element2 = driver.find_element_by_class_name('content-section.content-section_no-padding.recommended-build_items.media-query.media-query_DESKTOP_MEDIUM__DESKTOP_LARGE')
