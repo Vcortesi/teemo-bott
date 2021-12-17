@@ -14,7 +14,6 @@ chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument('--window-size=1920,1080')
 
 script = " "
 bot = commands.Bot(command_prefix='!')
@@ -45,29 +44,13 @@ async def aram(ctx, *args):
         driver=webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"))
         driver.set_window_size(1920, 1080)
         driver.get('https://u.gg/lol/champions/aram/'+champion+'/-aram')
-
         element0 = driver.find_element_by_class_name('champion-image').get_attribute("src")
         await ctx.send(element0)
-
         time.sleep(10)
-
         element1 = driver.find_element_by_class_name('content-section_content.recommended-build_runes')
         element1.screenshot("screenshot.png")
         await ctx.send(file=discord.File('screenshot.png'))
         #os.remove('screenshot1.png')
-
-        time.sleep(10)
-        element2 = driver.find_element_by_class_name('content-section.content-section_no-padding.recommended-build_items.media-query.media-query_DESKTOP_MEDIUM__DESKTOP_LARGE')
-        element2.screenshot("screenshot.png")
-        await ctx.send(file=discord.File('screenshot.png'))
-        #os.remove('screenshot2.png')
-
-        time.sleep(10)
-        element3 = driver.find_element_by_class_name('content-section_content.skill-path-block')
-        element3.screenshot("screenshot.png")
-        await ctx.send(file=discord.File('screenshot.png'))
-        #os.remove('screenshot3.png')
-
         driver.quit()
 
 @bot.command()
