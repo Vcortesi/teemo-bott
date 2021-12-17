@@ -1,3 +1,6 @@
+# Author : Vincent Cortesi
+# Title: teemo-bot v2
+#
 import discord
 from requests.api import request
 import os
@@ -7,11 +10,6 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from discord.ext import commands
-
-#path = "C://Users/Vince/AppData/Local/Programs/Python/chromedriver.exe" 
-
-
-
 script = " "
 bot = commands.Bot(command_prefix='!')
 
@@ -20,6 +18,7 @@ bot = commands.Bot(command_prefix='!')
 async def on_ready():
     print('Captain Teemo on duty!')
 
+# Command-List Command
 @bot.command()
 async def commands(ctx):
     async with ctx.typing():
@@ -33,6 +32,7 @@ async def commands(ctx):
         
         await ctx.send(embed=embed)
 
+# aram <champion> Command
 @bot.command()
 async def aram(ctx, *args):
     async with ctx.typing():
@@ -68,6 +68,7 @@ async def aram(ctx, *args):
 
         driver.quit()
 
+#ranked <champion> Command
 @bot.command()
 async def ranked(ctx, *args):
     async with ctx.typing():
@@ -107,6 +108,7 @@ async def ranked(ctx, *args):
 
         driver.quit()
 
+# data <summoner name> Command
 @bot.command()
 async def data(ctx, args):
     async with ctx.typing():
@@ -124,6 +126,7 @@ async def data(ctx, args):
     
         await ctx.send(embed=embed)
 
+# tft <summoner name> Command
 @bot.command()
 async def tft(ctx, args):
     async with ctx.typing():
@@ -147,14 +150,14 @@ async def tft(ctx, args):
 
         await ctx.send(embed=embed)
 
-
+# patchnotes Command
 @bot.command()
 async def patchnotes(ctx,*args):
         async with ctx.typing():
                 embed = discord.Embed(title = " ", description = "**[Patch Notes](https://www.leagueoflegends.com/en-us/news/tags/patch-notes/)**",color = discord.Colour.red())
                 await ctx.send(embed=embed)
 
-
+# Generates random script for bot
 def randomScript():
     randNum = random.randrange(1, 5)
     if(randNum == 1):
@@ -169,16 +172,19 @@ def randomScript():
         script = "Never underestimate the power of the Scout's code."
     return script
 
+# API request to Riot
 def requestSummonerData(summonerName):
     URL = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+summonerName+"?api_key="+os.environ.get('API')
     response = requests.get(URL)
     return response.json()
 
+# API request to Riot
 def requestRankedData(ID):
     URL = "https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/"+ID+"?api_key="+os.environ.get('API')
     response = requests.get(URL)
     return response.json()
 
+# API request to Riot
 def requestTftData(ID):
     URL = "https://na1.api.riotgames.com/tft/league/v1/entries/by-summoner/"+ID+"?api_key="+os.environ.get('API')
     response = requests.get(URL)
