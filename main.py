@@ -52,16 +52,16 @@ async def aram(ctx, *args):
 
         await ctx.send(element0)
 
-        element1.screenshot("screenshot1.png")
-        await ctx.send(file=discord.File('screenshot1.png'))
+        element1.screenshot("screenshot.png")
+        await ctx.send(file=discord.File('screenshot.png'))
         #os.remove('screenshot1.png')
 
-        element2.screenshot("screenshot2.png")
-        await ctx.send(file=discord.File('screenshot2.png'))
+        element2.screenshot("screenshot.png")
+        await ctx.send(file=discord.File('screenshot.png'))
         #os.remove('screenshot2.png')
 
-        element3.screenshot("screenshot3.png")
-        await ctx.send(file=discord.File('screenshot3.png'))
+        element3.screenshot("screenshot.png")
+        await ctx.send(file=discord.File('screenshot.png'))
         #os.remove('screenshot3.png')
 
         driver.quit()
