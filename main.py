@@ -51,7 +51,7 @@ async def aram(ctx, *args):
         element3 = driver.find_element_by_class_name('content-section_content.skill-path-block')
 
         await ctx.send(element0)
-
+        time.sleep(10)
         element1.screenshot("screenshot.png")
         await ctx.send(file=discord.File('screenshot.png'))
         #os.remove('screenshot1.png')
