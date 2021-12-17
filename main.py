@@ -76,7 +76,7 @@ async def ranked(ctx, *args):
         driver.set_window_size(1920, 1080)
         element0 = driver.find_element_by_class_name('champion-image').get_attribute("src")
         element1 = driver.find_element_by_class_name('content-section_content.recommended-build_runes')
-        element2 = driver.find_element_by_class_name('content-section.content-section_no-padding.recommended-build_items.media-query.media-query_DESKTOP_MEDIUM__DESKTOP_LARGE')
+        element2 = driver.find_element_by_class_name('content-section content-section_no-padding recommended-build_items media-query media-query_MOBILE_SMALL__MOBILE_LARGE')
         element3 = driver.find_element_by_class_name('content-section.toughest-matchups.undefined')
         element4 = driver.find_element_by_class_name('content-section_content.skill-path-block')
 
