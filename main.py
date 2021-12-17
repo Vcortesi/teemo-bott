@@ -9,11 +9,7 @@ from selenium.webdriver.chrome.options import Options
 from discord.ext import commands
 
 #path = "C://Users/Vince/AppData/Local/Programs/Python/chromedriver.exe" 
-chrome_options = webdriver.ChromeOptions()
-chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--disable-dev-shm-usage")
-chrome_options.add_argument("--no-sandbox")
+
 
 
 script = " "
@@ -42,48 +38,34 @@ async def aram(ctx, *args):
     async with ctx.typing():
         await ctx.send(randomScript())
         champion = args[0]
-        #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-        #driver.get('https://u.gg/lol/champions/aram/'+champion+'/-aram')
-       # driver.set_window_size(1920, 1080)
-        #element0 = driver.find_element_by_class_name('champion-image').get_attribute("src")
-        #element1 = driver.find_element_by_class_name('content-section_content.recommended-build_runes')
-        #element2 = driver.find_element_by_class_name('content-section.content-section_no-padding.recommended-build_items.media-query.media-query_DESKTOP_MEDIUM__DESKTOP_LARGE')
-        #element3 = driver.find_element_by_class_name('content-section_content.skill-path-block')
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument("--no-sandbox")
+        driver=webdriver.Chrome(options=chrome_options,executable_path=path)
+        driver.get('https://u.gg/lol/champions/aram/'+champion+'/-aram')
+        driver.set_window_size(1920, 1080)
 
-        driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-        driver.get('https://u.gg/lol/champions/aram/'+champion+'/-aram')
-        driver.set_window_size(1920, 1080)
         element0 = driver.find_element_by_class_name('champion-image').get_attribute("src")
-        await ctx.send(element0)
-        driver.quit()
-        driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-        driver.get('https://u.gg/lol/champions/aram/'+champion+'/-aram')
-        driver.set_window_size(1920, 1080)
-        time.sleep(5)
         element1 = driver.find_element_by_class_name('content-section_content.recommended-build_runes')
+        element2 = driver.find_element_by_class_name('content-section.content-section_no-padding.recommended-build_items.media-query.media-query_DESKTOP_MEDIUM__DESKTOP_LARGE')
+        element3 = driver.find_element_by_class_name('content-section_content.skill-path-block')
+
+        await ctx.send(element0)
+
         element1.screenshot("screenshot.png")
         await ctx.send(file=discord.File('screenshot.png'))
         os.remove('screenshot.png')
-        driver.quit()
-        
-        driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-        driver.get('https://u.gg/lol/champions/aram/'+champion+'/-aram')
-        driver.set_window_size(1920, 1080)
-        time.sleep(5)
-        element2 = driver.find_element_by_class_name('content-section.content-section_no-padding.recommended-build_items.media-query.media-query_DESKTOP_MEDIUM__DESKTOP_LARGE')
+
         element2.screenshot("screenshot.png")
         await ctx.send(file=discord.File('screenshot.png'))
         os.remove('screenshot.png')
-        driver.quit()
 
-        driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-        driver.get('https://u.gg/lol/champions/aram/'+champion+'/-aram')
-        driver.set_window_size(1920, 1080)
-        time.sleep(5)
-        element3 = driver.find_element_by_class_name('content-section_content.skill-path-block')
         element3.screenshot("screenshot.png")
         await ctx.send(file=discord.File('screenshot.png'))
         os.remove('screenshot.png')
+
         driver.quit()
 
 @bot.command()
