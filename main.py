@@ -43,7 +43,7 @@ async def aram(ctx, *args):
         chrome_options.add_argument("--headless")
         chrome_options.add_argument("--disable-dev-shm-usage")
         chrome_options.add_argument("--no-sandbox")
-        driver=webdriver.Chrome(options=chrome_options,executable_path=path)
+        driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
         driver.get('https://u.gg/lol/champions/aram/'+champion+'/-aram')
         driver.set_window_size(1920, 1080)
 
