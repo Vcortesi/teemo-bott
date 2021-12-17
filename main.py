@@ -41,14 +41,28 @@ async def aram(ctx, *args):
     async with ctx.typing():
         await ctx.send(randomScript())
         champion = args[0]
-        driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-        driver.get('https://app.mobalytics.gg/lol/champions/'+champion+'/aram-builds')
+        driver=webdriver.Chrome(options=chrome_options,executable_path=path)
+        driver.get('https://u.gg/lol/champions/aram/'+champion+'/-aram')
+        
+        element0 = driver.find_element_by_class_name('champion-image').get_attribute("src")
         element1 = driver.find_element_by_class_name('content-section_content.recommended-build_runes')
-        driver.set_window_size(1920, 1080)
-        time.sleep(10)
+        element2 = driver.find_element_by_class_name('content-section.content-section_no-padding.recommended-build_items.media-query.media-query_DESKTOP_MEDIUM__DESKTOP_LARGE')
+        element3 = driver.find_element_by_class_name('content-section_content.skill-path-block')
+
+        await ctx.send(element0)
+
         element1.screenshot("screenshot.png")
         await ctx.send(file=discord.File('screenshot.png'))
         os.remove('screenshot.png')
+
+        element2.screenshot("screenshot.png")
+        await ctx.send(file=discord.File('screenshot.png'))
+        os.remove('screenshot.png')
+
+        element3.screenshot("screenshot.png")
+        await ctx.send(file=discord.File('screenshot.png'))
+        os.remove('screenshot.png')
+
         driver.quit()
 
 @bot.command()
@@ -56,7 +70,7 @@ async def ranked(ctx, *args):
     async with ctx.typing():
         await ctx.send(randomScript())
         champion = args[0]
-        driver=webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"))
+        driver=webdriver.Chrome(options=chrome_options,executable_path=path)
         driver.get('https://u.gg/lol/champions/'+champion+'/build')
 
         element0 = driver.find_element_by_class_name('champion-image').get_attribute("src")
